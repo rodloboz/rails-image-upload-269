@@ -2,7 +2,13 @@
 
 <div class="cards">
   <% @cocktails.each do |cocktail| %>
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+  <% if cocktail.photo.url  %>
+    <% url = image_path cocktail.photo.url, height: 300, width: 400, crop: :fill %>
+  <% else %>
+    <% url = "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg" %>
+  <% end %>
+
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= url %>)">
       <%= cocktail.name %>
     </div>
   <% end %>
